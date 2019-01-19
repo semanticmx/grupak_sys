@@ -73,11 +73,3 @@ def calculadora(operacion, operando_1, operando_2):
 
     """
     return print(operaciones[operacion](x=operando_1, y=operando_2))
-
-
-calculadora('+', 4, 8)
-calculadora('*', 3, 2)
-calculadora('-', 5, 10)
-calculadora('/', 20, 5)
-calculadora('res', 10, 3)
-calculadora('/', 10, 0)
