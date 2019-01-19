@@ -48,13 +48,10 @@ def modulo(x, y):
     return x % y
 
 
-operaciones = {
-    '+': suma,
-    '-': resta,
-    '*': multiplicacion,
-    '/': division,
-    'res': modulo,
-}
+operadores = ['+', '-', '*', '/', 'res', ]
+metodos = [suma, resta, multiplicacion, division, modulo, ]
+
+operaciones = {operador[0]: operador[1] for operador in zip(operadores, metodos)}
 
 
 def calculadora(operacion, operando_1, operando_2):
