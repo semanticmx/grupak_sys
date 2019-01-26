@@ -39,9 +39,7 @@ def shift_down(a, n, maximo):
         # biggest = [c for c in [c1, c2, ] if c < maximo and a[int(c)] > a[int(biggest)]]
         # list comprehension
         posicion_del_mayor = [c for c in [c1, c2, ] if c < maximo and a[int(c)] > a[int(biggest)]]
-
-        if posicion_del_mayor:
-            biggest = posicion_del_mayor.pop()
+        biggest = posicion_del_mayor.pop() if posicion_del_mayor else biggest
 
         if biggest == n:
             return
