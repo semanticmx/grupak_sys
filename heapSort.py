@@ -2,14 +2,14 @@ a = [125, 84, 52, 13, 29, 55, 54, 56, ]
 
 
 def swap(a, i, j):
-    a[i], a[j] = a[j], a[i]
+    a[int(i)], a[int(j)] = a[int(j)], a[int(i)]
 
 
 def is_heap(a):
     n = 0
     m = 0
     while True:
-        for i in [0, 1]:
+        for i in [0, 1, ]:
             m += 1
             if m >= len(a):
                 return True
@@ -24,7 +24,7 @@ def sift_down(a, n, max):
         c1 = 2 * n + 1
         c2 = c1 + 1
         for c in [c1, c2]:
-            if c < max and a[c] > a[biggest]:
+            if c < max and a[int(c)] > a[int(biggest)]:
                 biggest = c
         if biggest == n:
             return
@@ -50,4 +50,4 @@ def heapsort(a):
 
 
 heapsort(a)
-print a
+print(a)
