@@ -9,7 +9,7 @@ ordenamientos_validos = {
     'h': 'heapsort',
 }
 
-MAX_ITEMS = 60000
+MAX_ITEMS = 6000
 
 
 class Timer:
