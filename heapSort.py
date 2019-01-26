@@ -2,7 +2,6 @@
 Ordenamiento HeapSort
 
 """
-lista_prueba = [125, 84, 52, 13, 29, 55, 54, 56, ]
 
 
 def swap(a, i, j):
@@ -32,11 +31,14 @@ def is_heap(a):
 
 
 def shift_down(a, n, maximo):
+    """
+    ordena los pares de a, hasta maximo
+
+    """
     while True:
         biggest = n
         c1 = 2 * n + 1
         c2 = c1 + 1
-        # biggest = [c for c in [c1, c2, ] if c < maximo and a[int(c)] > a[int(biggest)]]
         # list comprehension
         posicion_del_mayor = [c for c in [c1, c2, ] if c < maximo and a[int(c)] > a[int(biggest)]]
         biggest = posicion_del_mayor.pop() if posicion_del_mayor else biggest
@@ -48,21 +50,25 @@ def shift_down(a, n, maximo):
 
 
 def heapify(a):
+    """
+    ordena la lista en pares.
+
+    """
     i = len(a) / 2 - 1
-    max = len(a)
+    maximo = len(a)
     while i >= 0:
-        shift_down(a, i, max)
+        shift_down(a, i, maximo)
         i -= 1
 
 
 def heapsort(a):
+    """
+    inicia ordenamiento heapsort de a
+
+    """
     heapify(a)
     j = len(a) - 1
     while j > 0:
         swap(a, 0, j)
         shift_down(a, 0, j)
         j -= 1
-
-
-heapsort(lista_prueba)
-print(lista_prueba)
