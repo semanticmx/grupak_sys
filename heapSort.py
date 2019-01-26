@@ -2,6 +2,7 @@
 Ordenamiento HeapSort
 
 """
+from contextlib import suppress
 
 
 lista_prueba = [125, 84, 52, 13, 29, 55, 54, 56, ]
@@ -41,11 +42,9 @@ def shift_down(a, n, maximo):
         # biggest = [c for c in [c1, c2, ] if c < maximo and a[int(c)] > a[int(biggest)]]
         # list comprehension
         posicion_del_mayor = [c for c in [c1, c2, ] if c < maximo and a[int(c)] > a[int(biggest)]]
-        try:
+
+        with(suppress(IndexError)):
             biggest = posicion_del_mayor.pop()
-        except IndexError:
-            # posicion_del_mayor = []
-            pass
 
         if biggest == n:
             return
