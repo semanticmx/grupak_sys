@@ -1,4 +1,9 @@
-mi_lista = [34, 93, 19, ]
+from random import shuffle
+from time import time
+
+max_items = 20000
+mi_lista = [n for n in range(max_items)]
+shuffle(mi_lista)
 
 
 def sort(lista):
@@ -14,11 +19,13 @@ def sort(lista):
                 centro.append(i)
             elif i > pivote:
                 derecha.append(i)
-        print(izquierda+["-"]+centro+["-"]+derecha)
         return sort(izquierda)+centro+sort(derecha)
     else:
         return lista
 
 
-print(mi_lista)
-print(sort(mi_lista))
+start_time = time()
+lista_ordenada = sort(mi_lista)
+stop_time = time()
+
+print(f'Lista: {lista_ordenada}, ordenada en {stop_time - start_time}')
