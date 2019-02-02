@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-miLista = [34,93,19]
+mi_lista = [34, 93, 19, ]
+
 
 def sort(lista):
     izquierda = []
@@ -7,9 +7,7 @@ def sort(lista):
     derecha = []
     if len(lista) > 1:
         pivote = lista[0]
-        #print (pivote)
         for i in lista:
-            #print (f"valor {i}")
             if i < pivote:
                 izquierda.append(i)
             elif i == pivote:
@@ -19,7 +17,8 @@ def sort(lista):
         print(izquierda+["-"]+centro+["-"]+derecha)
         return sort(izquierda)+centro+sort(derecha)
     else:
-      return lista
+        return lista
 
-print(miLista)
-print(sort(miLista))
+
+print(mi_lista)
+print(sort(mi_lista))
