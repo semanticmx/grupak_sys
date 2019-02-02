@@ -73,3 +73,9 @@ def heapsort(a):
         swap(a, 0, j)
         shift_down(a, 0, j)
         j -= 1
+
+
+if __name__ == '__main__':
+    lista = [54, 26, 93, 17, 77, 31, 44, 55, 20, ]
+    heapsort(lista)
+    print(lista)

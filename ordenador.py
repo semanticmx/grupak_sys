@@ -1,12 +1,15 @@
+
 import time
 
 from random import shuffle
 
-from utils.ordenamientos import burbuja, heapsort
+from utils.ordenamientos import burbuja, heapsort, insercion, quicksort
 
 ordenamientos_validos = {
     'b': 'burbuja',
     'h': 'heapsort',
+    'i': 'insercion',
+    'q': 'Quick Sort',
 }
 
 MAX_ITEMS = 6000
@@ -39,6 +42,8 @@ class Ordenador(Timer):
     _map_ordenamientos = {
         'b': burbuja.ordenamiento_burbuja,
         'h': heapsort.heapsort,
+        'i': insercion.ordenamiento_insercion,
+        'q': quicksort.quick_sort,
     }
 
     def __init__(self, *args, **kwargs):
@@ -71,25 +76,16 @@ class Ordenador(Timer):
         print(f'Listo!...')
         self.report_performance()
 
-# ordenador = Ordenador(
-#     ordenamientos=ordenamientos_validos,
-#     tipo='b',
-# )
-# ordenador.ordenar()
-#
-# ordenador = Ordenador(lista=[9, 1, 4, ])
-# ordenador.ordenar()
-#
-# ordenador = Ordenador(tipo='burbuja')
-# ordenador.ordenar()
-#
-# ordenador = Ordenador(tipo='heapsort')
-# ordenador.ordenar()
-
 
 if __name__ == '__main__':
-    ordenador = Ordenador()
-    ordenador.ordenar()
+    default = Ordenador()
+    default.ordenar()
 
-    ordenador = Ordenador(tipo='h')
-    ordenador.ordenar()
+    heap_sort = Ordenador(tipo='h')
+    heap_sort.ordenar()
+
+    insersion = Ordenador(tipo='i')
+    insersion.ordenar()
+
+    quick = Ordenador(tipo='q')
+    quick.ordenar()
