@@ -1,7 +1,3 @@
-
-MAX_ITEMS = 10000
-
-
 def ordenamiento_burbuja(una_lista):
     """
     genera una lista de índices descendentes basados en el tamaño de una_lista - 1
@@ -25,9 +21,6 @@ def ordenamiento_burbuja(una_lista):
     'Argumento incorrecto.'
 
     """
-    # checar que una_lista no sea mayor a 10,000 elementos
-    una_lista = una_lista[:MAX_ITEMS] if len(una_lista) > MAX_ITEMS else una_lista
-
     for num_pasada in range(len(una_lista)-1, 0, -1):
         for i in range(num_pasada):
             if una_lista[i] > una_lista[i+1]:

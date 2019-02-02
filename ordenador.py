@@ -40,6 +40,8 @@ class Ordenador(Timer):
     """
     _tipo = 'burbuja'
     _funcion = None
+    _lista = []
+
     _map_ordenamientos = {
         'b': burbuja.ordenamiento_burbuja,
         'h': heapsort.heapsort,
@@ -52,6 +54,8 @@ class Ordenador(Timer):
         super().__init__()
 
         self._tipo = kwargs.get('tipo', 'b')
+        self._lista = kwargs.get('lista')
+
         print(f'Inicializando Ordenador con {self._tipo}.')
 
         try:
@@ -62,16 +66,37 @@ class Ordenador(Timer):
     def __str__(self):
         return f'{self.__class__.__name__}::ordenando por {self._tipo}'
 
-    def ordenar(self):
+    def __setattr__(self, key, value):
+        """
+        asigna un valor a un atributo de la clase
+
+        """
+        super().__setattr__(key, value)
+        print(f'Asignado valor a {key}')
+        print(f'el valor es {value}')
+
+    def __getattribute__(self, item):
+        """
+        regresa el valor de item
+
+        """
+        print(f'Solicitó: {item}')
+        return super().__getattribute__(item)
+
+    def get_lista(self):
+        lista = [n for n in range(MAX_ITEMS)]
+        shuffle(lista)
+
+        return lista
+
+    def iniciar(self):
         """
         inicia el ordenamiento
 
         """
         if self._funcion:
-            lista = [n for n in range(MAX_ITEMS)]
-            shuffle(lista)
             print(f'Ordenando...')
-            self._funcion(lista)
+            self._funcion(self.get_lista())
             self.stop_timer()
         else:
             print(f'Sin algoritmo de ordenamiento.')
@@ -80,17 +105,18 @@ class Ordenador(Timer):
 
 
 if __name__ == '__main__':
-    default = Ordenador()
-    default.ordenar()
-
+    # default = Ordenador(lista=[])
+    # default._lista = [1, 2, 3, ]
+    # default.iniciar()
+    #
     heap_sort = Ordenador(tipo='h')
-    heap_sort.ordenar()
-
-    insersion = Ordenador(tipo='i')
-    insersion.ordenar()
-
-    quick = Ordenador(tipo='q')
-    quick.ordenar()
-
-    shell = Ordenador(tipo='s')
-    shell.ordenar()
+    heap_sort.iniciar()
+    #
+    # insersion = Ordenador(tipo='i')
+    # insersion.iniciar()
+    #
+    # quick = Ordenador(tipo='q')
+    # quick.iniciar()
+    #
+    # shell = Ordenador(tipo='s')
+    # shell.iniciar()
