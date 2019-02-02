@@ -3,16 +3,17 @@ import time
 
 from random import shuffle
 
-from utils.ordenamientos import burbuja, heapsort, insercion, quicksort
+from utils.ordenamientos import burbuja, heapsort, insercion, quicksort, shell
 
 ordenamientos_validos = {
     'b': 'burbuja',
     'h': 'heapsort',
     'i': 'insercion',
     'q': 'Quick Sort',
+    's': 'Shell',
 }
 
-MAX_ITEMS = 6000
+MAX_ITEMS = 20000
 
 
 class Timer:
@@ -44,6 +45,7 @@ class Ordenador(Timer):
         'h': heapsort.heapsort,
         'i': insercion.ordenamiento_insercion,
         'q': quicksort.quick_sort,
+        's': shell.ordenamiento_shell,
     }
 
     def __init__(self, *args, **kwargs):
@@ -89,3 +91,6 @@ if __name__ == '__main__':
 
     quick = Ordenador(tipo='q')
     quick.ordenar()
+
+    shell = Ordenador(tipo='s')
+    shell.ordenar()
