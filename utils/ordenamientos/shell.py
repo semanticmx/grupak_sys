@@ -12,6 +12,8 @@ def ordenamiento_shell(lista):
 
         contador_sublistas = contador_sublistas // 2  # División tipo (Floor)
 
+    return lista
+
 
 def brecha_ordenamiento(lista, inicio, brecha):  # [],0,4
     """

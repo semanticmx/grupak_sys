@@ -26,6 +26,8 @@ def ordenamiento_burbuja(una_lista):
             if una_lista[i] > una_lista[i+1]:
                 una_lista[i], una_lista[i+1] = una_lista[i+1], una_lista[i]
 
+    return una_lista
+
 
 if __name__ == '__main__':
     lista = [54, 26, 93, 17, 77, 31, 44, 55, 20, ]

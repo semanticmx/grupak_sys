@@ -5,15 +5,7 @@ from random import shuffle
 
 from utils.ordenamientos import burbuja, heapsort, insercion, quicksort, shell
 
-ordenamientos_validos = {
-    'b': 'burbuja',
-    'h': 'heapsort',
-    'i': 'insercion',
-    'q': 'Quick Sort',
-    's': 'Shell',
-}
-
-MAX_ITEMS = 20000
+MAX_ITEMS = 450000
 
 
 class Timer:
@@ -24,7 +16,6 @@ class Timer:
         super().__init__()
 
         self.start_process = time.time() if not self.start_process else self.start_process
-        print(f'Iniciando proceso en: {self.start_process}')
 
     def stop_timer(self):
         self.stop_process = time.time()
@@ -41,6 +32,7 @@ class Ordenador(Timer):
     _tipo = 'burbuja'
     _funcion = None
     _lista = []
+    _max_items = MAX_ITEMS
 
     _map_ordenamientos = {
         'b': burbuja.ordenamiento_burbuja,
@@ -50,44 +42,46 @@ class Ordenador(Timer):
         's': shell.ordenamiento_shell,
     }
 
+    ordenamientos_validos = {
+        'b': 'Burbuja',
+        'h': 'Heap Sort',
+        'i': 'Insercion',
+        'q': 'Quick Sort',
+        's': 'Shell',
+    }
     def __init__(self, *args, **kwargs):
         super().__init__()
 
         self._tipo = kwargs.get('tipo', 'b')
-        self._lista = kwargs.get('lista')
-
-        print(f'Inicializando Ordenador con {self._tipo}.')
+        self._lista = kwargs.get('lista')  # regresa un None si no está definida lista
+        self._max_items = kwargs.get('max_items', MAX_ITEMS)
 
         try:
             self._funcion = self._map_ordenamientos[self._tipo]
         except KeyError:
             print(f'Tipo de ordenamiento invalido.')
 
+        print(f'Inicializando Ordenador con {self.ordenamientos_validos[self._tipo]}.')
+
     def __str__(self):
         return f'{self.__class__.__name__}::ordenando por {self._tipo}'
-
-    def __setattr__(self, key, value):
-        """
-        asigna un valor a un atributo de la clase
-
-        """
-        super().__setattr__(key, value)
-        print(f'Asignado valor a {key}')
-        print(f'el valor es {value}')
 
     def __getattribute__(self, item):
         """
         regresa el valor de item
 
         """
-        print(f'Solicitó: {item}')
-        return super().__getattribute__(item)
+        if item != '_lista':
+            return super().__getattribute__(item)
 
-    def get_lista(self):
-        lista = [n for n in range(MAX_ITEMS)]
-        shuffle(lista)
+        valor = super().__getattribute__(item)
 
-        return lista
+        if not valor:
+            lista = [n for n in range(self._max_items)]
+            shuffle(lista)
+            return lista
+
+        return valor
 
     def iniciar(self):
         """
@@ -95,28 +89,27 @@ class Ordenador(Timer):
 
         """
         if self._funcion:
-            print(f'Ordenando...')
-            self._funcion(self.get_lista())
+            print(f'Ordenando {self._max_items} elementos')
+            lista = self._funcion(self._lista)
             self.stop_timer()
         else:
             print(f'Sin algoritmo de ordenamiento.')
-        print(f'Listo!...')
+        print(f'Listo. de {lista[0]} a {lista[-1]}')
         self.report_performance()
 
 
 if __name__ == '__main__':
-    # default = Ordenador(lista=[])
-    # default._lista = [1, 2, 3, ]
-    # default.iniciar()
-    #
-    heap_sort = Ordenador(tipo='h')
+    default = Ordenador(max_items=6000)
+    default.iniciar()
+
+    heap_sort = Ordenador(tipo='h', max_items=95000)
     heap_sort.iniciar()
-    #
-    # insersion = Ordenador(tipo='i')
-    # insersion.iniciar()
-    #
-    # quick = Ordenador(tipo='q')
-    # quick.iniciar()
-    #
-    # shell = Ordenador(tipo='s')
-    # shell.iniciar()
+
+    insersion = Ordenador(tipo='i', max_items=10000)
+    insersion.iniciar()
+
+    quick = Ordenador(tipo='q', max_items=500000)
+    quick.iniciar()
+
+    shell = Ordenador(tipo='s', max_items=250000)
+    shell.iniciar()
