@@ -1,9 +1,11 @@
+from tqdm import tqdm
+
 def ordenamiento_insercion(lista_n):
     """
     implementación del ordenamiento de inserción
 
     """
-    for i in range(len(lista_n)):
+    for i in tqdm(range(len(lista_n))):
         minimo = i
 
         for j in range(i, len(lista_n)):
