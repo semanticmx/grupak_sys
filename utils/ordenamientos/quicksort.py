@@ -22,10 +22,11 @@ def quick_sort(lista):
 
 if __name__ == '__main__':
     from random import shuffle
-
+    from tqdm import tqdm
+    
     max_items = 20000
     mi_lista = [n for n in range(max_items)]
     shuffle(mi_lista)
-
-    lista_ordenada = quick_sort(mi_lista)
+    for i in tqdm(range(max_items)):
+        lista_ordenada = quick_sort(mi_lista)
     print(f'Lista: {lista_ordenada}')
