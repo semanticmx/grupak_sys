@@ -21,7 +21,12 @@ def ordenamiento_burbuja(una_lista):
     'Argumento incorrecto.'
 
     """
-    for num_pasada in range(len(una_lista)-1, 0, -1):
+    try:
+        tqdm([])
+    except NameError:
+        from tqdm import tqdm
+
+    for num_pasada in tqdm(range(len(una_lista)-1, 0, -1)):
         for i in range(num_pasada):
             if una_lista[i] > una_lista[i+1]:
                 una_lista[i], una_lista[i+1] = una_lista[i+1], una_lista[i]
@@ -30,6 +35,6 @@ def ordenamiento_burbuja(una_lista):
 
 
 if __name__ == '__main__':
-    lista = [54, 26, 93, 17, 77, 31, 44, 55, 20, ]
-    ordenamiento_burbuja(lista)
-    print(lista)
+    from helpers import get_test_list
+
+    ordenamiento_burbuja(get_test_list())
